@@ -5,8 +5,6 @@ import 'package:flutter/widgets.dart';
 class MainPage extends StatelessWidget{
   const MainPage({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,78 +20,26 @@ class MainPage extends StatelessWidget{
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(5),
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
-        children: <Widget>[
-          Row(
-            children: [
-              Image.asset(
-                'assets/images/image1.jpg',
-                width: 100,
-                height: 100,
-              ),
-              const Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          '  Title',
-                          style: TextStyle(color: Colors.black, fontSize: 24),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Text(
-                          '  composer',
-                          style: TextStyle(color: Colors.black54, fontSize: 12),
-                          overflow: TextOverflow.ellipsis,
-                        )
-                      ]
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                            '  bpm : ',
-                            style: TextStyle(color: Colors.black54, fontSize: 12),
-                            overflow: TextOverflow.ellipsis
-                        ),
-                        Text(
-                            '  effector : ',
-                            style: TextStyle(color: Colors.black54, fontSize: 12),
-                            overflow: TextOverflow.ellipsis
-                        ),
-                        Text(
-                            '  2024/08/02',
-                            style: TextStyle(color: Colors.black54, fontSize: 12),
-                            overflow: TextOverflow.ellipsis
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(//버튼으로 대체할 것
-                          child: Text('  dif 1'),
-                        ),
-                        SizedBox(
-                          child: Text('  dif 2'),
-                        ),
-                        SizedBox(
-                          child: Text('  dif 3'),
-                        ),
-                        SizedBox(
-                          child: Text('  dif 4'),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+        children: const <Widget>[
+          MusicList(
+            title: 'Song 1',
+            composer: 'han03',
+            effector: 'han03',
+            bpm: '168~210',
+            date: '2015/08/03'
+          ),
+          MusicList(
+              title: 'Song 2',
+              composer: 'han03',
+              effector: 'han03',
+              bpm: '190',
+              date: '2023/11/30'
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        //options
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted),
@@ -109,6 +55,104 @@ class MainPage extends StatelessWidget{
             icon: Icon(Icons.search),
             activeIcon: Icon(Icons.search_outlined),
             label: 'Search'
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MusicList extends StatelessWidget{
+  final String title;
+  final String composer;
+  final String effector;
+  final String bpm;
+  final String date;
+
+  const MusicList({
+    super.key,
+    required this.title,
+    required this.composer,
+    required this.effector,
+    required this.bpm,
+    required this.date,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/image1.jpg',
+            width: 100,
+            height: 100,
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    const SizedBox(width: 12,),
+                    Text(
+                      title,
+                      style: const TextStyle(color: Colors.black, fontSize: 24),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(width: 20,),
+                    Text(
+                      'composer : $composer',
+                      style: const TextStyle(color: Colors.black54, fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                    )
+                  ]
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 12,),
+                    Text(
+                        'bpm : $bpm',
+                        style: const TextStyle(color: Colors.black54, fontSize: 12),
+                        overflow: TextOverflow.ellipsis
+                    ),
+                    const SizedBox(width: 12,),
+                    Text(
+                        'effector : $effector',
+                        style: const TextStyle(color: Colors.black54, fontSize: 12),
+                        overflow: TextOverflow.ellipsis
+                    ),
+                    const SizedBox(width: 12,),
+                    Text(
+                        date,
+                        style: const TextStyle(color: Colors.black54, fontSize: 12),
+                        overflow: TextOverflow.ellipsis
+                    )
+                  ],
+                ),
+                Row(
+                  //TODO : implement difficulty buttons
+                  children: [
+                    TextButton(
+                      child: Text('dif 1'),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text('dif 2'),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text('dif 3'),
+                      onPressed: () {},
+                    ),
+                    TextButton(
+                      child: Text('dif 4'),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
