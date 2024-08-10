@@ -1,9 +1,14 @@
+import 'package:cnu_flutter/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:cnu_flutter/pages_controller.dart';
 
 class MainPage extends StatelessWidget{
-  const MainPage({super.key});
+  MainPage({super.key});
+
+  final controller = Get.put(PagesController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class MainPage extends StatelessWidget{
       body: ListView(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.vertical,
-        children: const <Widget>[
+        children: <Widget>[
           MusicList(
             title: 'Song 1',
             composer: 'han03',
@@ -40,11 +45,12 @@ class MainPage extends StatelessWidget{
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: controller.onBottomTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.format_list_bulleted),
             activeIcon: Icon(Icons.format_list_bulleted_outlined),
-            label: 'My Record'
+            label: 'My Record',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
@@ -69,7 +75,7 @@ class MusicList extends StatelessWidget{
   final String bpm;
   final String date;
 
-  const MusicList({
+  MusicList({
     super.key,
     required this.title,
     required this.composer,
@@ -77,6 +83,8 @@ class MusicList extends StatelessWidget{
     required this.bpm,
     required this.date,
   });
+
+  final controller = Get.find<PagesController>();
 
   @override
   Widget build(BuildContext context) {
