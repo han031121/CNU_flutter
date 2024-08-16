@@ -1,72 +1,8 @@
-import 'package:cnu_flutter/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:cnu_flutter/pages_controller.dart';
 
-class MainPage extends StatelessWidget{
-  MainPage({super.key});
-
-  final controller = Get.put(PagesController());
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {},
-        ),
-        title: const Text(
-          'SDVX info',
-          style: TextStyle(color: Colors.black),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        scrollDirection: Axis.vertical,
-        children: <Widget>[
-          MusicList(
-            title: 'Song 1',
-            composer: 'han03',
-            effector: 'han03',
-            bpm: '168~210',
-            date: '2015/08/03'
-          ),
-          MusicList(
-              title: 'Song 2',
-              composer: 'han03',
-              effector: 'han03',
-              bpm: '190',
-              date: '2023/11/30'
-          ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: controller.onBottomTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.format_list_bulleted),
-            activeIcon: Icon(Icons.format_list_bulleted_outlined),
-            label: 'My Record',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              activeIcon: Icon(Icons.home_outlined),
-              label: 'Home'
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            activeIcon: Icon(Icons.search_outlined),
-            label: 'Search'
-          ),
-        ],
-      ),
-    );
-  }
-}
+import '../controller/pages_controller.dart';
 
 class MusicList extends StatelessWidget{
   final String title;
@@ -74,6 +10,7 @@ class MusicList extends StatelessWidget{
   final String effector;
   final String bpm;
   final String date;
+  final star = false.obs;
 
   MusicList({
     super.key,
@@ -97,24 +34,24 @@ class MusicList extends StatelessWidget{
             width: 100,
             height: 100,
           ),
-          Expanded(
+          Flexible(
             child: Column(
               children: [
                 Row(
-                  children: [
-                    const SizedBox(width: 12,),
-                    Text(
-                      title,
-                      style: const TextStyle(color: Colors.black, fontSize: 24),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(width: 20,),
-                    Text(
-                      'composer : $composer',
-                      style: const TextStyle(color: Colors.black54, fontSize: 12),
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ]
+                    children: [
+                      const SizedBox(width: 12,),
+                      Text(
+                        title,
+                        style: const TextStyle(color: Colors.black, fontSize: 24),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(width: 20,),
+                      Text(
+                        'composer : $composer',
+                        style: const TextStyle(color: Colors.black54, fontSize: 12),
+                        overflow: TextOverflow.ellipsis,
+                      )
+                    ]
                 ),
                 Row(
                   children: [
@@ -162,6 +99,20 @@ class MusicList extends StatelessWidget{
               ],
             ),
           ),
+          Obx(()=>
+            IconButton(
+              icon: star.value==true?
+                const Icon(Icons.star): const Icon(Icons.star_border),
+              color: star.value==true?Colors.amber:Colors.grey,
+              onPressed: (){
+                if (star.value==true) {
+                  star.value = false;
+                } else {
+                  star.value = true;
+                }
+              },
+            ),
+          )
         ],
       ),
     );
