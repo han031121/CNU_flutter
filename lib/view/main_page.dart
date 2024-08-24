@@ -1,17 +1,17 @@
 import 'package:cnu_flutter/main.dart';
-import 'package:cnu_flutter/widgets/bottom_bar.dart';
+import 'package:cnu_flutter/view/bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:cnu_flutter/controller/pages_controller.dart';
+import 'package:cnu_flutter/controller/main_controller.dart';
 
 import '../widgets/music_list.dart';
 
-class MainPage extends GetView<PagesController>{
+class MainPage extends GetView<MainController>{
   MainPage({super.key});
   @override
-  final controller = Get.put(PagesController());
+  final controller = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +36,16 @@ class MainPage extends GetView<PagesController>{
             composer: 'han03',
             effector: 'han03',
             bpm: '168~210',
-            date: '2015/08/03'
+            date: '2015/08/03',
+            chain: '2125',
           ),
           MusicList(
-              title: 'Song 2',
-              composer: 'han03',
-              effector: 'han03',
-              bpm: '190',
-              date: '2023/11/30'
+            title: 'Song 2',
+            composer: 'han03',
+            effector: 'han03',
+            bpm: '190',
+            date: '2023/11/30',
+            chain: '1775',
           ),
         ],
       ),

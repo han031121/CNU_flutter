@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/pages_controller.dart';
+import '../controller/main_controller.dart';
 
 class MusicList extends StatelessWidget{
   final String title;
@@ -10,6 +10,7 @@ class MusicList extends StatelessWidget{
   final String effector;
   final String bpm;
   final String date;
+  final String chain;
   final star = false.obs;
 
   MusicList({
@@ -19,9 +20,10 @@ class MusicList extends StatelessWidget{
     required this.effector,
     required this.bpm,
     required this.date,
+    required this.chain,
   });
 
-  final controller = Get.find<PagesController>();
+  final controller = Get.find<MainController>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +65,16 @@ class MusicList extends StatelessWidget{
                     ),
                     const SizedBox(width: 12,),
                     Text(
+                        'chain : $chain',
+                        style: const TextStyle(color: Colors.black54, fontSize: 12),
+                        overflow: TextOverflow.ellipsis
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 12,),
+                    Text(
                         'effector : $effector',
                         style: const TextStyle(color: Colors.black54, fontSize: 12),
                         overflow: TextOverflow.ellipsis
@@ -86,14 +98,6 @@ class MusicList extends StatelessWidget{
                       child: Text('dif 2'),
                       onPressed: () {},
                     ),
-                    TextButton(
-                      child: Text('dif 3'),
-                      onPressed: () {},
-                    ),
-                    TextButton(
-                      child: Text('dif 4'),
-                      onPressed: () {},
-                    )
                   ],
                 ),
               ],

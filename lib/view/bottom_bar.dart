@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../controller/pages_controller.dart';
+import '../controller/bottom_navigation_bar_controller.dart';
 
-final controller = Get.find<PagesController>();
-
-class BottomBar extends StatelessWidget{
+class BottomBar extends GetView<BottomNavigationBarController>{
   const BottomBar({super.key});
 
   @override

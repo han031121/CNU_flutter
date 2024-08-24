@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../controller/pages_controller.dart';
-import '../widgets/bottom_bar.dart';
+import '../controller/record_controller.dart';
+import 'bottom_bar.dart';
 
-class RecordPage extends GetView<PagesController>{
+class RecordPage extends GetView<RecordController>{
   const RecordPage({super.key});
 
   @override

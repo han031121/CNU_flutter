@@ -1,17 +1,19 @@
 import 'package:cnu_flutter/view/main_page.dart';
-import 'package:cnu_flutter/controller/pages_controller.dart';
+import 'package:cnu_flutter/controller/main_controller.dart';
 import 'package:cnu_flutter/bindings/pages_binding.dart';
 import 'package:cnu_flutter/view/record_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cnu_flutter/inject_dependencies.dart';
 
 //TODO : use enum instead of list (only for bottom navigation buttons)
 const List<String> pages = [
   '/record','/'
 ];
 
-void main() {
+void main() async{
+  await injectDependencies();
   runApp(const MyApp());
 }
 
